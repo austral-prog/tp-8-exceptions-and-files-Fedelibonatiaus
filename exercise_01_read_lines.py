@@ -1,5 +1,5 @@
 # Ejercicio 1 - Leer líneas de un archivo
-
+import os
 
 def read_lines(filename):
     """
@@ -25,4 +25,18 @@ def read_lines(filename):
         # archivo contiene: "manzana\n  banana\npera\n"
         read_lines("datos.txt") -> ["manzana", "banana", "pera"]
     """
-    pass  # Reemplazar con tu implementación
+    if not os.path.exists(filename):
+        raise FileNotFoundError
+
+    lineas = []
+
+    with open(filename, "r") as archivo:
+        for linea in archivo:
+            linea = linea.strip()
+
+            if linea != "":
+                lineas.append(linea)
+
+    return lineas
+
+
